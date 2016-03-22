@@ -1,0 +1,22 @@
+{
+  "name": "phasergame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamuelBristol/JS-Phaser-TeamSoup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamuelBristol/JS-Phaser-TeamSoup/issues"
+  },
+  "homepage": "https://github.com/SamuelBristol/JS-Phaser-TeamSoup#readme",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
+}
