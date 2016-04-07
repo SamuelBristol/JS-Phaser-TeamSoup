@@ -1,27 +1,29 @@
-var game = new Phaser.Game(
-  800,
-  600,
-  Phaser.AUTO,
-  'game',
-  { preload: preload, create: create }
+// Game variables
+const GAME_WIDTH = 800;
+const GAME_HEIGHT = 600;
+const RENDERER = Phaser.AUTO;
+const HTML_ELEMENT = 'game';
+
+var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, RENDERER, HTML_ELEMENT, {
+    preload: preload, // the method to preload assets
+    create: create,   // the method to create objects before updating
+    update: update    // the method to call on every game update
+  }
 );
 
+var gameManager = new GameManager(game);
+
 function preload() {
-
-    //  You can fill the preloader with as many assets as your game requires
-
-    //  Here we are loading an image. The first parameter is the unique
-    //  string by which we'll identify the image later in our code.
-
-    //  The second parameter is the URL of the image (relative)
-    game.load.image('phaser', 'phaser-logo-small.png');
-
-}
+  game.load.image('amoeba', 'assets/resource/Amoeba.png');
+};
 
 function create() {
+  // Setup the GameManager
+  gameManager.init();
+}
 
-    //  This creates a simple sprite that is using our loaded image and
-    //  displays it on-screen
-    game.add.sprite(0, 0, 'phaser');
+function update() {
+
+  gameManager.update();
 
 }
