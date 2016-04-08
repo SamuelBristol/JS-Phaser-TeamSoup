@@ -14,7 +14,7 @@ var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, RENDERER, HTML_ELEMENT, {
 var gameManager = new GameManager(game);
 
 function preload() {
-  game.load.image('amoeba', 'assets/resource/Amoeba.png');
+  game.load.image('blob', 'assets/resource/Blob.png');
 };
 
 function create() {
