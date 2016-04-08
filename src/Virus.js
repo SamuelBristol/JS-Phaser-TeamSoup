@@ -1,13 +1,14 @@
 // Virus class, Extends entity
 function Virus () {
   // Call parent constructor
-  Entity.call(this, 'amoeba', 1, 'assets/resource/Amoeba.png', 1);
+  Entity.call(this, 'blob', 1, 'assets/resource/Blob.png', 0.5);
 
   // Extra virus members
-  this.maxDurationInFrames = 120;
+  this.maxDurationInFrames = 300; // 5 seconds
   this.framesActive = 0;
   this.isAlive = true;
-  this.sprite = undefined;
+
+  // Sprite members
   this.alpha = 0.5;
   this.tint = 0xFFFF00;
 }
