@@ -1,7 +1,7 @@
 // Player class, Extends Entity
 function Player (health, keyboard) {
   // Call parent constructor
-  Entity.call(this, 'amoeba', health, 'assets/resource/Amoeba.png', 1);
+  Entity.call(this, 'blob', health, 'assets/resource/Blob.png', 1);
 
   // Extension from Entity are player controls
   this.keyboard = keyboard;
@@ -11,8 +11,10 @@ function Player (health, keyboard) {
   this.damping = 0.999;
   this.fixedRotation = true;
 
-  this.maxViruses = 2;
+  this.maxViruses = 4;
   this.viruses = new Array();
+
+  //this.autoShootTimer = 10; // 1/6th seconds
 }
 
 Player.prototype = Object.create(Entity.prototype);
@@ -33,12 +35,27 @@ Player.prototype.update = function () {
 Player.prototype.doAbilities = function () {
   // calls doSpecial() on specialKey down event
   this.keyboard.specialKey.onDown.add(this.doSpecial, this);
+
+  /* autoshoot alternative
+  if (this.autoShootTimer % 10 == 0) {
+    this.doSpecial();
+    this.autoShootTimer = 0;
+  }
+  this.autoShootTimer++;
+  */
 };
 
 Player.prototype.doSpecial = function () {
   if (this.viruses.length < this.maxViruses) {
-    var virus = gameManager.spawnVirus();
-    this.viruses.push(virus);
+    // spawn up to maxViruses
+    var virusesToSpawn = this.maxViruses - this.viruses.length;
+    for (var i = 0; i < virusesToSpawn; i++) {
+      var x = this.sprite.position.x;
+      var y = this.sprite.position.y
+
+      var virus = gameManager.spawnVirus(x, y - 25);
+      this.viruses.push(virus);
+    }
   }
 };
 
