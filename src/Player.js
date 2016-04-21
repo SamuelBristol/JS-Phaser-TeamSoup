@@ -1,17 +1,19 @@
 // Player class, Extends Entity
 function Player (health, keyboard) {
   // Call parent constructor
-  Entity.call(this, 'blob', health, 'assets/resource/Blob.png', 1);
+  Entity.call(this, 'blob', health, 'assets/resource/Blob.png', 1.25);
 
   // Extension from Entity are player controls
   this.keyboard = keyboard;
 
   // Extra player members
   this.speed = 500;
+  this.maxSpeed = 500;
+  this.minSpeed = 50;
   this.damping = 0.999;
   this.fixedRotation = true;
 
-  this.maxViruses = 4;
+  this.maxViruses = 8;
   this.viruses = new Array();
 
   //this.autoShootTimer = 10; // 1/6th seconds
@@ -26,10 +28,36 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function () {
   // Player behavior to be executed every frame
   // Call from update() in game
+  this.sprite.health = this.health;
+
   this.doMovement();
   this.doAbilities();
   this.doViruses();
 
+};
+
+Player.prototype.damage = function(amount) {
+  this.health -= amount;
+};
+
+Player.prototype.getBigger = function () {
+  this.scale += 0.25;
+  this.sprite.body.mass = this.scale;
+  this.speed = (this.maxSpeed / this.sprite.body.mass) + this.minSpeed;
+  this.sprite.scale.setTo(this.scale, this.scale);
+
+  this.sprite.body.setRectangleFromSprite(this.sprite);
+  this.sprite.body.collideWorldBounds = true;
+};
+
+Player.prototype.getSmaller = function () {
+  this.scale -= 0.25;
+  this.sprite.body.mass = this.scale;
+  this.speed = (this.maxSpeed / this.sprite.body.mass) + this.minSpeed;
+  this.sprite.scale.setTo(this.scale, this.scale);
+
+  this.sprite.body.setRectangleFromSprite(this.sprite);
+  this.sprite.body.collideWorldBounds = true;
 };
 
 Player.prototype.doAbilities = function () {
@@ -53,7 +81,7 @@ Player.prototype.doSpecial = function () {
       var x = this.sprite.position.x;
       var y = this.sprite.position.y
 
-      var virus = gameManager.spawnVirus(x, y - 25);
+      var virus = gameManager.spawnVirus(x, y - 5);
       this.viruses.push(virus);
     }
   }
@@ -63,10 +91,11 @@ Player.prototype.doViruses = function () {
   if (this.viruses.length > 0) {
     // Update the viruses
     for (var i = 0; i < this.viruses.length; i++) {
-      this.viruses[i].update();
-
-      // remove any dead viruses
-      if (!this.viruses[i].isAlive) {
+      if (this.viruses[i].isAlive()) {
+        // Update the virus if it is alive
+        this.viruses[i].update();
+      } else {
+        // Remove from this.viruses if not alive
         this.viruses.splice(i, 1);
       }
     }
