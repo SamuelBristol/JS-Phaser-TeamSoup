@@ -11,3 +11,9 @@ function Entity (name, health, asset, scale) {
 Entity.prototype.isAlive = function () {
   return this.health > 0;
 };
+
+Entity.prototype.kill = function () {
+  this.health = 0;
+  this.sprite.exists = false;
+  this.sprite.removeNextStep = true;
+};
