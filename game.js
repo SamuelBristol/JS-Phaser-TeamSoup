@@ -15,6 +15,8 @@ var gameManager = new GameManager(game);
 
 function preload() {
   game.load.image('blob', 'assets/resource/Blob.png');
+  game.load.image('virus', 'assets/resource/Blob.png');
+  game.load.image('enemy', 'assets/resource/Blob.png');
 };
 
 function create() {
