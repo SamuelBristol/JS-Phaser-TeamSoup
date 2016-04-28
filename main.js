@@ -11,7 +11,7 @@ game.state.add('Ameblob.MainMenu', Ameblob.MainMenu);
 game.state.add('Ameblob.Game', Ameblob.Game);
 game.state.add('Ameblob.Controls', Ameblob.Controls);
 game.state.add('Ameblob.Credits', Ameblob.Credits);
-game.state.add('Ameblob.GameOver', Ameblob.GameOver);
+game.state.add('Ameblob.End', Ameblob.End);
 game.state.add('Ameblob.Settings', Ameblob.Settings);
 
 game.state.start('Ameblob.MainMenu');
