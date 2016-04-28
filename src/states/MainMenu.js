@@ -37,10 +37,37 @@ Ameblob.MainMenu.prototype = {
     settings.setTextBounds(0, -50, GAME_WIDTH, GAME_HEIGHT);
     controls.setTextBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
     credits.setTextBounds(0, 50, GAME_WIDTH, GAME_HEIGHT);
+      
+    // Make clickables
+    play.inputEnabled = true;
+    play.events.onInputUp.add(startGame);
+    
+    settings.inputEnabled = true;
+    settings.events.onInputUp.add(startSettings);
+    
+    controls.inputEnabled = true;
+    controls.events.onInputUp.add(startControls);
+    
+    credits.inputEnabled = true;
+    credits.events.onInputUp.add(startCredits);
+      
   },
   
-  start: function() {
-    this.state.start('Ameblob.Game');
-  }
+  
 };
 
+function startGame() {
+    game.state.start('Ameblob.Game');
+};
+
+function startSettings() {
+    game.state.start('Ameblob.Settings');
+};
+
+function startControls() {
+    game.state.start('Ameblob.Controls');
+};
+
+function startCredits() {
+    game.state.start('Ameblob.Credits');
+};

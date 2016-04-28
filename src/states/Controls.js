@@ -8,6 +8,7 @@ Ameblob.Controls.prototype = {
     var leftControlText = "LEFT ARROW: Moves left.";
     var rightControlText = "RIGHT ARROW: Moves right.";
     var zKeyControlText = "Z KEY: Special ability.";
+    var backText = "BACK";
     
     var style = { font: "bold 72px Arial", fill: "#2f0", boundsAlignH: "center", boundsAlignV: "middle" };
     
@@ -20,6 +21,7 @@ Ameblob.Controls.prototype = {
     leftArrow = game.add.text(0, 0, leftControlText, style);
     rightArrow = game.add.text(0, 0, rightControlText, style);
     zKey = game.add.text(0, 0, zKeyControlText, style);
+    back = game.add.text(0, 0, backText, style);
     
     title.setTextBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
     upArrow.setTextBounds(0, -100, GAME_WIDTH, GAME_HEIGHT);
@@ -27,5 +29,13 @@ Ameblob.Controls.prototype = {
     leftArrow.setTextBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
     rightArrow.setTextBounds(0, 50, GAME_WIDTH, GAME_HEIGHT);
     zKey.setTextBounds(0, 100, GAME_WIDTH, GAME_HEIGHT);
+    back.setTextBounds(0, 200, GAME_WIDTH, GAME_HEIGHT);
+    
+    back.inputEnabled = true;
+    back.events.onInputUp.add(goBack);
   }
 };
+
+function goBack() {
+    game.state.start("Ameblob.MainMenu");
+}
