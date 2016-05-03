@@ -35,7 +35,3 @@ Ameblob.Controls.prototype = {
     back.events.onInputUp.add(goBack);
   }
 };
-
-function goBack() {
-    game.state.start("Ameblob.MainMenu");
-}

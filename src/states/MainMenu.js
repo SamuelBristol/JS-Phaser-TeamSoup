@@ -71,3 +71,7 @@ function startControls() {
 function startCredits() {
     game.state.start('Ameblob.Credits');
 };
+
+function goBack() {
+    game.state.start("Ameblob.MainMenu");
+};
