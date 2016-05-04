@@ -58,8 +58,6 @@ Ameblob.Settings.prototype = {
             off.fontWeight = 900;
             // TODO: turn sound off
         });
-        
-        back.inputEnabled = true;
-        back.events.onInputUp.add(goBack);
+        goBackHover();
     }
 };

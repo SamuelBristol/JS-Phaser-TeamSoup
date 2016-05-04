@@ -29,7 +29,6 @@ Ameblob.Credits.prototype = {
         
         back.setTextBounds(0, 200, GAME_WIDTH, GAME_HEIGHT);
         
-        back.inputEnabled = true;
-        back.events.onInputUp.add(goBack);
+        goBackHover();
     }
 };

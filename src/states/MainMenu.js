@@ -10,7 +10,7 @@ Ameblob.MainMenu.prototype = {
   },
   
   create: function() {
-   // Add text here pick positions to add it to
+   // Add text here, pick positions to add it to.
     var titleText = "AMOEBLOB"
     var playText = "PLAY";
     var settingsText = "SETTINGS";
@@ -38,18 +38,26 @@ Ameblob.MainMenu.prototype = {
     controls.setTextBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
     credits.setTextBounds(0, 50, GAME_WIDTH, GAME_HEIGHT);
       
-    // Make clickables
+    // Make clickables and hover abilitiy
     play.inputEnabled = true;
     play.events.onInputUp.add(startGame);
+    play.events.onInputOver.add(onOver);
+    play.events.onInputOut.add(onOut);
     
     settings.inputEnabled = true;
     settings.events.onInputUp.add(startSettings);
+    settings.events.onInputOver.add(onOver);
+    settings.events.onInputOut.add(onOut);
     
     controls.inputEnabled = true;
     controls.events.onInputUp.add(startControls);
+    controls.events.onInputOver.add(onOver);
+    controls.events.onInputOut.add(onOut);
     
     credits.inputEnabled = true;
     credits.events.onInputUp.add(startCredits);
+    credits.events.onInputOver.add(onOver);
+    credits.events.onInputOut.add(onOut);
       
   },
   
@@ -74,4 +82,21 @@ function startCredits() {
 
 function goBack() {
     game.state.start("Ameblob.MainMenu");
+};
+
+function onOver(target) {
+    target.fill = "red";
+    target.fontSize = "45px";
+};
+    
+function onOut(target) {
+    target.fill = "white";
+    target.fontSize = "38px";
+};
+
+function goBackHover() {
+    back.inputEnabled = true;
+    back.events.onInputUp.add(goBack);
+    back.events.onInputOver.add(onOver);
+    back.events.onInputOut.add(onOut);  
 };

@@ -31,7 +31,6 @@ Ameblob.Controls.prototype = {
     zKey.setTextBounds(0, 100, GAME_WIDTH, GAME_HEIGHT);
     back.setTextBounds(0, 200, GAME_WIDTH, GAME_HEIGHT);
     
-    back.inputEnabled = true;
-    back.events.onInputUp.add(goBack);
+    goBackHover();
   }
 };
