@@ -207,6 +207,10 @@ GameManager.prototype.update = function () {
     this.game.state.start('Ameblob.End', false, false, 1);
   }
 
+  if (!this.player.alive) {
+    this.game.state.start('Ameblob.End', false, false, 2);
+  }
+
 };
 
 GameManager.prototype._setupWorldPhysics = function () {
