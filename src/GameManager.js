@@ -60,6 +60,11 @@ GameManager.prototype.init = function () {
     enemy.animations.add('enemy_idle');
     enemy.animations.play('enemy_idle', 6, true);
 
+    enemy.events.onKilled.add(function(){
+      var splat = this.game.add.audio('splat');
+      splat.play();
+    }, this);
+
     this.enemies.add(enemy);
   }
 
@@ -197,6 +202,10 @@ GameManager.prototype.update = function () {
       virus.body.force.y = this.game.rnd.integerInRange(-10, 10);
     }
   }, this, 1);
+
+  if (this.enemies.countLiving() == 0) {
+    this.game.state.start('Ameblob.End', false, false, 1);
+  }
 
 };
 

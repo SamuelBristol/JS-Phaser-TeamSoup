@@ -12,6 +12,11 @@ Ameblob.Game.prototype = {
 
     game.load.spritesheet('amoeba_idle', 'assets/animations/Amoeba_Idle.png', 16, 16, 3);
     game.load.spritesheet('enemy_idle', 'assets/animations/Enemy_Idle.png', 16, 16, 3);
+
+    game.load.audio('splat', [
+      'assets/sounds/Spit_Splat-Mike_Koenig-1170500447.mp3',
+      'assets/sounds/Spit_Splat-Mike_Koenig-1170500447.ogg'
+    ]);
   },
 
   create: function() {
