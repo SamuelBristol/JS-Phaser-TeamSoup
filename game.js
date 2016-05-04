@@ -14,9 +14,12 @@ var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, RENDERER, HTML_ELEMENT, {
 var gameManager = new GameManager(game);
 
 function preload() {
-  game.load.image('blob', 'assets/resource/Blob.png');
-  game.load.image('virus', 'assets/resource/Blob.png');
-  game.load.image('enemy', 'assets/resource/Blob.png');
+  game.load.image('blob', 'assets/resource/Amoeba.png');
+  game.load.image('virus', 'assets/resource/Virus.png');
+  game.load.image('enemy', 'assets/resource/Enemy.png');
+
+  game.load.spritesheet('amoeba_idle', 'assets/animations/Amoeba_Idle.png', 16, 16, 3);
+  game.load.spritesheet('enemy_idle', 'assets/animations/Enemy_Idle.png', 16, 16, 3);
 };
 
 function create() {
