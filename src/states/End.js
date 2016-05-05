@@ -4,12 +4,12 @@ Ameblob.End.prototype = {
   init: function(endState) {
     this.endState = endState
   },
-  
+
   create: function() {
     var replayText = "Replay";
     var mainMenuText = "Main Menu";
     var titleText = 'Title';
-    
+
     switch(this.endState) {
       case 1:
         titleText = "You Win!"
@@ -40,11 +40,11 @@ Ameblob.End.prototype = {
     replayLabel.inputEnabled = true;
     replayLabel.events.onInputUp.add(startGame);
     replayLabel.events.onInputOver.add(onOver);
-    replayLabel.events.onInputOut.add(onOut); 
+    replayLabel.events.onInputOut.add(onOut);
 
     mainMenuLabel.inputEnabled = true;
     mainMenuLabel.events.onInputUp.add(goBack);
     mainMenuLabel.events.onInputOver.add(onOver);
-    mainMenuLabel.events.onInputOut.add(onOut); 
+    mainMenuLabel.events.onInputOut.add(onOut);
   }
 };
