@@ -1,11 +1,14 @@
 var Ameblob = {};
 
-Ameblob.MainMenu = function(game) {
+Ameblob.MainMenu = function(game, musicOn) {
   this.menuMusic = null;
+  this.musicOn = musicOn;
 };
 
 Ameblob.MainMenu.prototype = {
   preload: function() {
+    game.load.image('logo', 'assets/resource/logo.png');
+
     game.load.audio('bgMusic', [
       'assets/music/150413_Weird_Electro.mp3',
       'assets/music/150413_Weird_Electro.ogg'
@@ -18,6 +21,8 @@ Ameblob.MainMenu.prototype = {
 
   create: function() {
     // Start the bgMusic
+
+    game.stage.backgroundColor = 0xAACC99;
 
     this.menuMusic = game.add.audio('bgMusic');
     this.menuMusic.play();
@@ -33,20 +38,19 @@ Ameblob.MainMenu.prototype = {
     var style = { font: "bold 72px Arial", fill: "#2f0", boundsAlignH: "center", boundsAlignV: "middle" };
 
     // adds title text to screen
-    title = game.add.text(0, -200, titleText, style);
+    title = game.add.sprite(120, 0, 'logo');
 
     // re-assign style with smaller font
     style = { font: "bold 38px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
 
     play = game.add.text(0, 0, playText, style);
-    settings = game.add.text(0, 0, settingsText, style);
+    //settings = game.add.text(0, 0, settingsText, style);
     controls = game.add.text(0, 0, controlsText, style);
     credits = game.add.text(0, 0, creditsText, style);
 
     // Setting text bounds
-    title.setTextBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
     play.setTextBounds(0, -100, GAME_WIDTH, GAME_HEIGHT);
-    settings.setTextBounds(0, -50, GAME_WIDTH, GAME_HEIGHT);
+    //settings.setTextBounds(0, -50, GAME_WIDTH, GAME_HEIGHT);
     controls.setTextBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
     credits.setTextBounds(0, 50, GAME_WIDTH, GAME_HEIGHT);
 
@@ -56,10 +60,10 @@ Ameblob.MainMenu.prototype = {
     play.events.onInputOver.add(onOver);
     play.events.onInputOut.add(onOut);
 
-    settings.inputEnabled = true;
+    /*settings.inputEnabled = true;
     settings.events.onInputUp.add(startSettings);
     settings.events.onInputOver.add(onOver);
-    settings.events.onInputOut.add(onOut);
+    settings.events.onInputOut.add(onOut);*/
 
     controls.inputEnabled = true;
     controls.events.onInputUp.add(startControls);

@@ -76,7 +76,7 @@ GameManager.prototype.init = function () {
 
 GameManager.prototype.create = function (game) {
     // Add timer
-  this.game.time.events.add(Phaser.Timer.SECOND * 30, endGame, this, 3); 
+  this.game.time.events.add(Phaser.Timer.SECOND * 30, endGame, this, 3);
 }
 
 GameManager.prototype.resizePlayer = function (sprite) {
@@ -212,7 +212,7 @@ GameManager.prototype.update = function () {
   if (this.enemies.countLiving() == 0) {
     this.game.state.start('Ameblob.End', false, false, 1);
   }
-  
+
   this.render(game);
 
   if (!this.player.alive) {
@@ -230,7 +230,7 @@ GameManager.prototype._setupWorldPhysics = function () {
 };
 
 GameManager.prototype.render = function(game) {
-  this.game.debug.text('Timer: ' +  this.game.time.events.duration, 10, 25, "#2f0");
+  this.game.debug.text('Time\n' +  this.game.time.events.duration / 1000, 10, 25, "#2f0");
 };
 
 function endGame(endState) {
