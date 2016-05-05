@@ -9,7 +9,6 @@ Ameblob.End.prototype = {
     var replayText = "Replay";
     var mainMenuText = "Main Menu";
     var titleText = 'Title';
-    console.log(this.endState);
     
     switch(this.endState) {
       case 1:
