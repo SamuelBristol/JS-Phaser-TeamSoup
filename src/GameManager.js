@@ -71,7 +71,13 @@ GameManager.prototype.init = function () {
   this.viruses = this.game.add.group();
 
   this.game.physics.p2.updateBoundsCollisionGroup();
+  this.create(game);
 };
+
+GameManager.prototype.create = function (game) {
+    // Add timer
+  this.game.time.events.add(Phaser.Timer.SECOND * 30, endGame, this, 3); 
+}
 
 GameManager.prototype.resizePlayer = function (sprite) {
   sprite.scale.setTo(sprite.health, sprite.health);
@@ -206,6 +212,8 @@ GameManager.prototype.update = function () {
   if (this.enemies.countLiving() == 0) {
     this.game.state.start('Ameblob.End', false, false, 1);
   }
+  
+  this.render(game);
 
   if (!this.player.alive) {
     this.game.state.start('Ameblob.End', false, false, 2);
@@ -220,3 +228,11 @@ GameManager.prototype._setupWorldPhysics = function () {
   //  No collision callbacks without this methods
   this.game.physics.p2.setImpactEvents(true);
 };
+
+GameManager.prototype.render = function(game) {
+  this.game.debug.text('Timer: ' +  this.game.time.events.duration, 10, 25, "#2f0");
+};
+
+function endGame(endState) {
+    this.game.state.start('Ameblob.End', false, false, endState);
+}
